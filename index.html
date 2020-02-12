@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Connect 4</title>
+</head>
+<body>
+    <p id="title"> Connect 4</p>
+    <div id="app">
+        <button v-for="(col, index) in grid" v-on:click="move(index)" :disabled="full[index] == 1">
+            <li v-for="cell in col">
+                <span v-if="cell == 1">P</span>
+                <span v-else-if="cell == 2">Q</span>
+                <span v-else> O</span>
+            </li>
+        </button>
+
+
+
+    </div>
+
+
+<script src="main.js"></script>
+</body>
+</html>
