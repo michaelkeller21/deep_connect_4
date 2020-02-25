@@ -9,13 +9,18 @@
 <body>
     <p id="title"> Connect 4</p>
     <div id="app">
-        <button v-for="(col, index) in grid" v-on:click="move(index)" :disabled="full[index] == 1">
+        <button v-for="(col, index) in grid" v-on:click="move(index)" :disabled="full[index] == 1 || status=='end'">
             <li v-for="cell in col">
                 <span v-if="cell == 1">P</span>
-                <span v-else-if="cell == 2">Q</span>
+                <span v-else-if="cell == -1">Q</span>
                 <span v-else> O</span>
             </li>
         </button>
+
+        <button v-on:click="reset_board()">Reset</button>
+
+        <p>{{pred}}</p>
+        <p>{{win_message}}</p>
 
 
 
