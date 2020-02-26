@@ -17,12 +17,12 @@ var app = new Vue({
                    ],
             pred: [0, 0, 0, 0, 0, 0, 0],
             full: [0, 0, 0, 0, 0, 0, 0],
-            status: "",
+            status: "in progress",
             players: [-1, 1],
             h: 6,
             w: 7,
             consecutive: 4,
-            win_message: '',
+            message: '',
         }
     })
 
@@ -31,8 +31,11 @@ function move(index) {
 
     app.grid[index].splice(app.grid[index].length - idx - 1, 1, 1);
     update_state();
-    ai_move();
-    update_state();
+
+    if(app.status != 'end') {
+        ai_move();
+        update_state();
+    }
 
 }
 
@@ -48,13 +51,16 @@ function ai_move() {
     idx = tf.tensor1d(pred).argMax().dataSync()[0];
 
     while(app.full[idx] == 1){
-        var pred = model.predict(input).dataSync();
+        const pred = model.predict(input).dataSync();
         idx = tf.tensor1d(pred).argMax().dataSync()[0];
     }
 
+    /*
     pred_round = pred.map(function(each_element){
     return Number(each_element.toFixed(1));
-    });
+    });*/
+    pred_arr = Array.from(pred);
+    const pred_round = pred_arr.map(x => (Math.round(x * 100) / 100));
 
     Vue.set(app, 'pred', pred_round);
     app.grid[idx].splice(app.grid[idx].length - fill_col(idx) - 1, 1, -1)
@@ -114,10 +120,10 @@ function update_state(){
         if (winner){
             app.status = 'end';
             if(winner == app.players[1]){
-                app.win_message = "You win!";
+                app.message = "You win!";
             }
             else{
-                app.win_message = "AI wins!"
+                app.message = "AI wins!"
             }
         }
     }
@@ -172,5 +178,5 @@ function reset_board(){
 
     app.status = 'in progress';
 
-    app.win_message = '';
+    app.message = '';
 }

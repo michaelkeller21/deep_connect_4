@@ -3,24 +3,30 @@
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Connect 4</title>
 </head>
 <body>
-    <p id="title"> Connect 4</p>
-    <div id="app">
-        <button v-for="(col, index) in grid" v-on:click="move(index)" :disabled="full[index] == 1 || status=='end'">
-            <li v-for="cell in col">
-                <span v-if="cell == 1">P</span>
-                <span v-else-if="cell == -1">Q</span>
-                <span v-else> O</span>
-            </li>
-        </button>
+    <div class="container" id="app">
+        <h2 id="title"> Connect 4</h2>
+        <div class="row">
+            <button type="button" class="col btn btn-light" v-for="(col, index) in grid" v-on:click="move(index)" :disabled="full[index] == 1 || status=='end'">
+                <div v-for="cell in col">
+                    <span class="border border-primary" v-if="cell == 1">P</span>
+                    <span v-else-if="cell == -1">Q</span>
+                    <span class="border border-danger" v-else></span>
+                </div>
+            </button>
+        </div>
 
-        <button v-on:click="reset_board()">Reset</button>
+        <button type="button" class="btn btn-light" v-on:click="reset_board()">Reset</button>
 
         <p>{{pred}}</p>
-        <p>{{win_message}}</p>
+        <div v-show="status == 'end'" class="alert alert-primary">{{message}}</div>
 
 
 
