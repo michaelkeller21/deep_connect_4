@@ -15,16 +15,13 @@
     <div class="p-5 container" id="app">
         <div class="row">
             <h1 class="col display-4 my-3">Deep Connect 4</h1>
-            <a class="col my-3" href="https://github.com/henryherzfeld/deep_connect_4" target="_blank">
+            <a class="col" href="https://github.com/henryherzfeld/deep_connect_4" target="_blank">
                 <i class="fab fa-github fa-lg"></i >
             </a>
         </div>
 
-
-
-
         <div class="row">
-            <div class="col-1" v-for="(col, index) in grid" style="height: 500px">
+            <div v-for="(col, index) in grid" >
                 <button class="btn btn-light" v-on:click="move(index)" :disabled="full[index] == 1 || status=='end'" style="height: 500px">
                 <div v-for="cell in col">
                     <p class="p-4 border border-danger rounded-circle" v-if="cell == 1"></p>

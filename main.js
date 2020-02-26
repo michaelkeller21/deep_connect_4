@@ -135,9 +135,12 @@ function check_win() {
         player = app.players[i];
         const win_seq = (current) => current == player;
 
+        grid_T = transpose(app.grid);
+        grid = app.grid;
+
         // Testing vertical win
         for(var j = 0; j < app.w; j++) {
-            col = app.grid[j];
+            col = grid[j];
             for(var k = 0; k <= app.h - app.consecutive; k++){
                 const slice = col.slice(k, k + app.consecutive);
                 if(slice.every(win_seq)){
@@ -149,12 +152,38 @@ function check_win() {
 
         // Testing horizontal win
         for(var j = 0; j < app.h; j++) {
-            row = transpose(app.grid)[j];
+            row = grid_T[j];
             for(var k = 0; k <= app.w - app.consecutive; k++){
                 const slice = row.slice(k, k + app.consecutive);
                 if(slice.every(win_seq)){
                     console.log("hori", player);
                     return player;
+                }
+            }
+        }
+        // Testing diagonal win
+        grids = [grid, grid_T];
+
+        for(grid_idx in grids) {
+            curr_grid = grids[grid_idx];
+            for (var j = 0; j <= app.h - app.consecutive; j++) {
+                temp = [];
+                for (var ll = 0; ll <= app.w - app.consecutive; ll++) {
+                    for (var k = 0; k < app.consecutive; k++) {
+                        if(grid_idx) {
+                            temp[k] = curr_grid[j + k][ll + k];
+                        } else {
+                            temp[k] = curr_grid[ll + k][j + k];
+                        }
+                    }
+                    for (var n = 0; n <= app.w - app.consecutive; n++) {
+                        const slice = temp.slice(n, n + app.consecutive);
+
+                        if (slice.every(win_seq) && slice.length == 4) {
+                            console.log("diag", player);
+                            return player;
+                        }
+                    }
                 }
             }
         }
@@ -176,8 +205,7 @@ function reset_board(){
                 [0, 0, 0, 0, 0, 0],
                 ];
     app.full = [0, 0, 0, 0, 0, 0, 0];
-
+    app.pred = [0, 0, 0, 0, 0, 0, 0];
     app.status = 'in progress';
-
     app.message = '';
 }
