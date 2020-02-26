@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ec89424-32cd-4c2d-be6f-adaf26abb129" name="Default Changelist" comment="" />
+    <list default="true" id="5ec89424-32cd-4c2d-be6f-adaf26abb129" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +19,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1XUlpJsqrSKvoQvJf0suT1zvnbD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -72,6 +80,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="450" y="345" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1581532703135" />
+    <state x="901" y="381" width="758" height="638" key="find.popup" timestamp="1582674234650">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="901" y="381" width="758" height="638" key="find.popup/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1582674234650" />
     <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1581537998936">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

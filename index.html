@@ -7,30 +7,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5c67fc8507.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>Connect 4</title>
+    <title>Deep Connect 4</title>
 </head>
 <body>
-    <div class="container" id="app">
-        <h2 id="title"> Connect 4</h2>
+    <div class="p-5 container" id="app">
         <div class="row">
-            <button type="button" class="col btn btn-light" v-for="(col, index) in grid" v-on:click="move(index)" :disabled="full[index] == 1 || status=='end'">
-                <div v-for="cell in col">
-                    <span class="border border-primary" v-if="cell == 1">P</span>
-                    <span v-else-if="cell == -1">Q</span>
-                    <span class="border border-danger" v-else></span>
-                </div>
-            </button>
+            <h1 class="col display-4 my-3">Deep Connect 4</h1>
+            <a class="col my-3" href="https://github.com/henryherzfeld/deep_connect_4" target="_blank">
+                <i class="fab fa-github fa-lg"></i >
+            </a>
         </div>
 
-        <button type="button" class="btn btn-light" v-on:click="reset_board()">Reset</button>
-
-        <p>{{pred}}</p>
-        <div v-show="status == 'end'" class="alert alert-primary">{{message}}</div>
 
 
+
+        <div class="row">
+            <div class="col-1" v-for="(col, index) in grid" style="height: 500px">
+                <button class="btn btn-light" v-on:click="move(index)" :disabled="full[index] == 1 || status=='end'" style="height: 500px">
+                <div v-for="cell in col">
+                    <p class="p-4 border border-danger rounded-circle" v-if="cell == 1"></p>
+                    <p class="p-4 border border-dark rounded-circle" v-else-if="cell == -1"></p>
+                    <p class="p-4 border border-primary rounded-circle" v-else></p>
+                </div>
+                <p class="mt-2 lead">{{pred[index]}}</p>
+                </button>
+            </div>
+            <button type="button" class="float-right mx-5 btn btn-light" v-on:click="reset_board()">Reset</button>
+        </div>
+
+
+        <div v-show="status == 'end'" class="mt-2 alert alert-primary w-75">{{message}}</div>
 
     </div>
+
 
 
 <script src="main.js"></script>

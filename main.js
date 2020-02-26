@@ -27,10 +27,12 @@ var app = new Vue({
     })
 
 function move(index) {
-    idx = fill_col(index);
+    if(!app.full[index]) {
+        idx = fill_col(index);
 
-    app.grid[index].splice(app.grid[index].length - idx - 1, 1, 1);
-    update_state();
+        app.grid[index].splice(app.grid[index].length - idx - 1, 1, 1);
+        update_state();
+    }
 
     if(app.status != 'end') {
         ai_move();
@@ -48,11 +50,12 @@ function ai_move() {
 
     const input = grid_to_tensor(app.grid);
     var pred = model.predict(input).dataSync();
-    idx = tf.tensor1d(pred).argMax().dataSync()[0];
+    idx = pred.indexOf(Math.max.apply(false, pred));
 
-    while(app.full[idx] == 1){
-        const pred = model.predict(input).dataSync();
-        idx = tf.tensor1d(pred).argMax().dataSync()[0];
+    // if the model predicts a filled index we find the next available index
+    while(app.full[idx]){
+        pred[idx] = 0;
+        idx = pred.indexOf(Math.max.apply(false, pred))
     }
 
     /*
@@ -105,14 +108,12 @@ function fill_col(index) {
 }
 
 function update_state(){
-    var count = 0;
     for(const index in app.full) {
         const idx = fill_col(index);
 
         // checking for full columns
         if (idx == -1) {
             app.full.splice(index, 1, 1);
-            count += 1;
         }
 
         winner = check_win();
