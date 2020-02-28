@@ -10,6 +10,11 @@
     <script src="https://kit.fontawesome.com/5c67fc8507.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Deep Connect 4</title>
+    <style>
+        .border-2 {
+            border-width:2px !important;
+        }
+    </style>
 </head>
 <body>
     <div class="p-5 container" id="app">
@@ -24,9 +29,9 @@
             <div v-for="(col, index) in grid" >
                 <button class="btn btn-light" v-on:click="move(index)" :disabled="full[index] == 1 || status=='end'" style="height: 500px">
                 <div v-for="cell in col">
-                    <p class="p-4 border border-danger rounded-circle" v-if="cell == 1"></p>
-                    <p class="p-4 border border-dark rounded-circle" v-else-if="cell == -1"></p>
-                    <p class="p-4 border border-primary rounded-circle" v-else></p>
+                    <p class="p-4 border border-danger rounded-circle border-2" v-if="cell == 1"></p>
+                    <p class="p-4 border border-dark rounded-circle border-2" v-else-if="cell == -1"></p>
+                    <p class="p-4 border border-primary rounded-circle border-2" v-else></p>
                 </div>
                 <p class="mt-2 lead">{{pred[index]}}</p>
                 </button>
